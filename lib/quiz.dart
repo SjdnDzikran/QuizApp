@@ -1,33 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_screen.dart';
+import 'package:quiz_app/results_screen.dart';
 import 'package:quiz_app/start_screen.dart';
 
-class Quiz extends StatefulWidget{
+class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
   @override
-  State<Quiz> createState(){
+  State<Quiz> createState() {
     return _QuizState();
   }
 }
 
-class _QuizState extends State<Quiz>{
+class _QuizState extends State<Quiz> {
+  List<String> chosenAnswer = [];
   var currentScreen = 'start-screen';
 
-  void changeScreen(){
+  void changeScreen() {
     setState(() {
       currentScreen = 'question-screen';
     });
   }
 
-  @override
-  Widget build(context){
+  void chooseAnswer(String answer) {
+    chosenAnswer.add(answer);
 
-    Widget screenDisplayed = StartScreen(changeScreen);
-    if (currentScreen == 'question-screen'){
-      screenDisplayed = const QuestionsScreen();
+    if (chosenAnswer.length == questions.length) {
+      setState(() {
+        currentScreen = 'results-screen';
+      });
     }
+  }
 
+  void restartQuiz() {
+    setState(() {
+      chosenAnswer = [];
+      currentScreen = 'start-screen';
+    });
+  }
+
+  @override
+  Widget build(context) {
+    Widget screenDisplayed = StartScreen(changeScreen);
+    if (currentScreen == 'question-screen') {
+      screenDisplayed = QuestionsScreen(chooseAnswer);
+    }
+    if (currentScreen == 'results-screen') {
+      screenDisplayed = ResultsScreen(
+        chosenAnswer: chosenAnswer,
+        restart: restartQuiz,
+      );
+    }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -36,8 +60,8 @@ class _QuizState extends State<Quiz>{
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 36, 236, 50),
-                Color.fromARGB(255, 29, 101, 244),
+                Color(0xFF21212B),
+                Color(0xFF2C3E50),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
