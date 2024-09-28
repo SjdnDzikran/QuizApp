@@ -4,8 +4,10 @@ import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
-
+  const QuestionsScreen(this.storeAnswer, {super.key});
+  
+  final void Function(String answer) storeAnswer;
+  
   @override
   State<QuestionsScreen> createState() {
     return _QuestionsScreenState();
@@ -15,14 +17,11 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var questionIndex = 0;
 
-  answerClick(){
-    if(questionIndex<questions.length-1){
-      setState(() {
+  answerClick(String answer){
+    setState(() {
       questionIndex++;
     });
-    } else{
-      return;
-    }
+    widget.storeAnswer(answer);
   }
   @override
   Widget build(context) {
@@ -38,7 +37,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             Text(
               currentQuestion.question,
               style: GoogleFonts.roboto(
-                color: Colors.white,
+                color: const Color(0xFFFAFAFA),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -46,7 +45,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
             const SizedBox(height: 32),
             ...currentQuestion.getShuffledAnswer().map((answer) {
-              return AnswerButton(answerText: answer, onTap: answerClick);
+              return AnswerButton(answerText: answer, onTap: () => answerClick(answer));
             })
           ],
         ),
