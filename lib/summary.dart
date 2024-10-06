@@ -54,21 +54,21 @@ class Summary extends StatelessWidget {
                           textAlign: TextAlign.start,
                           style: GoogleFonts.roboto(
                             color: const Color(0xFF2196F3),
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 8,
                         ),
                         Text(
                           (data['correct_answer'] as String),
                           textAlign: TextAlign.start,
                           style: GoogleFonts.roboto(
                             color: const Color(0xFF43A047),
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        const SizedBox(
+                          height: 16,
                         ),
                       ],
                     ),
