@@ -37,4 +37,31 @@ const questions = [
       'James Gosling',
     ],
   ),
+  QuizQuestions(
+    'Which programming language is the fastest?',
+    [
+      'C',
+      'C++',
+      'Python',
+      'Java',
+    ],
+  ),
+  QuizQuestions(
+    'Which frameworks/libraries that is developed by Google?',
+    [
+      'TensorFlow',
+      'React',
+      'Pytorch',
+      'NumPy',
+    ],
+  ),
+  QuizQuestions(
+    'Which LLM is developed by META?',
+    [
+      'Llama',
+      'Falcon',
+      'Gemma',
+      'PaLM',
+    ],
+  ),
 ];
