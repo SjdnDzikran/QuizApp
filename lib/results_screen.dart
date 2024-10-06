@@ -44,7 +44,7 @@ class ResultsScreen extends StatelessWidget {
             Text(
               'You answered $numberOfCorrectAnswers out of $numberOfQuestions questions correctly',
               style: GoogleFonts.roboto(
-                color: Color(0xFFFAFAFA),
+                color: const Color(0xFFFAFAFA),
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
               ),
@@ -54,6 +54,9 @@ class ResultsScreen extends StatelessWidget {
               height: 24,
             ),
             Summary(summaryData),
+            const SizedBox(
+              height: 16,
+            ),
             TextButton.icon(
               onPressed: restart,
               icon: const Icon(
