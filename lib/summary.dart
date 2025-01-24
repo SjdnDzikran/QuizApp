@@ -18,6 +18,7 @@ class Summary extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
+                    radius: 20,
                     backgroundColor:
                         (data['choosen_answer'] == data['correct_answer'])
                             ? const Color(0xFF43A047)
